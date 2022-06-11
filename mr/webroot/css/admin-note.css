@@ -1,0 +1,16 @@
+/* 
+    Created on : 2020/08/16, 10:42:47
+    Author     : furu
+*/
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td:nth-of-type(1) {width: 15%;}         /* 属性 */
+
+
+
+
+

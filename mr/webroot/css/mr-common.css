@@ -1,0 +1,32 @@
+/* 
+    Created on : 2020/06/19, 17:29:55
+    Author     : furu
+*/
+
+body {font-size: 15pt; margin: 8px 4px;}
+
+a {margin-right: 5px}
+a:hover {background-color: #ffd700;}
+
+div#name {margin-left: 75pt;}
+div#header_link {float: right;}
+div#recorded_time {float: right;}
+
+input {font-size: 13pt;} /* （全体のフォント-tdパディング*2） */
+
+th {
+    border: 1pt solid gray;
+    font-size: 12pt;
+    font-weight: lighter;
+    padding: 3px;
+}
+
+td {
+    border: 1pt solid gray;
+    padding: 1px;
+}
+
+textarea {font-size: 15pt;}
+
+
+

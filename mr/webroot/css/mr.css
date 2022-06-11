@@ -1,0 +1,18 @@
+/* 
+    Created on : 2020/06/19, 17:29:55
+    Author     : furu
+*/
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+th:nth-of-type(1) {width: 50%;}     /* 既往症... */
+
+td{
+    vertical-align: top;
+    /* overflow-wrap: break-word; */
+}
+
+

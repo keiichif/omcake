@@ -1,0 +1,19 @@
+/* 
+    Created on : 2020/06/19, 17:29:55
+    Author     : furu
+*/
+
+table {
+    table-layout: auto;
+    width: auto;
+}
+
+th, td {border: none;}
+
+th:nth-of-type(1) {width: 10%;}         /* 受付番号 */
+
+td:nth-of-type(1) {text-align: center;} /* 受付番号 */
+td:nth-of-type(2) {text-align: center;} /* 受付時刻 */
+td:nth-of-type(3) {text-align: center;} /* 患者番号 */
+td:nth-of-type(6) {text-align: center;} /* 性別     */
+td:nth-of-type(7) {text-align: center;} /* 年齢     */

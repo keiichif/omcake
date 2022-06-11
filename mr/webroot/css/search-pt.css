@@ -1,0 +1,16 @@
+/* 
+    Created on : 2020/12/04, 15:21:13
+    Author     : furu
+*/
+
+table{
+    table-layout: auto;
+    width: auto;
+}
+
+th, td {border: none;}
+
+td:nth-of-type(1) {text-align: center;} /* 患者番号 */
+td:nth-of-type(4) {text-align: center;} /* 性別     */
+td:nth-of-type(5) {text-align: right;}  /* 生年月日 */
+td:nth-of-type(6) {text-align: right;}  /* 電話番号 */

@@ -1,0 +1,12 @@
+/* 
+    Created on : 2020/08/03, 9:25:04
+    Author     : furu
+*/
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+th:nth-of-type(1) {width: 18%;} /* 日付 */
+td:nth-of-type(1) {text-align: center}

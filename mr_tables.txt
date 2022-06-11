@@ -1,0 +1,39 @@
+          Table "public.tbl_admin_note"
+ Column |  Type  | Collation | Nullable | Default 
+--------+--------+-----------+----------+---------
+ id     | bigint |           | not null | 
+ ptnum  | text   |           | not null | 
+ note1  | text   |           |          | 
+ note2  | text   |           |          | 
+ note3  | text   |           |          | 
+ note4  | text   |           |          | 
+ note5  | text   |           |          | 
+ note6  | text   |           |          | 
+ note7  | text   |           |          | 
+ note8  | text   |           |          | 
+Indexes:
+    "tbl_admin_note_pkey" PRIMARY KEY, btree (id)
+    "tbl_admin_note_ptnum_key" UNIQUE CONSTRAINT, btree (ptnum)
+
+                      Table "public.tbl_cc_and_order"
+   Column    |            Type             | Collation | Nullable | Default 
+-------------+-----------------------------+-----------+----------+---------
+ mrid        | bigint                      |           | not null | 
+ ptnum       | text                        |           | not null | 
+ t_1st_save  | timestamp without time zone |           | not null | 
+ t_last_save | timestamp without time zone |           | not null | 
+ cc          | text                        |           |          | 
+ col_order   | text                        |           |          | 
+Indexes:
+    "tbl_cc_and_order_pkey" PRIMARY KEY, btree (mrid)
+
+            Table "public.tbl_clin_note"
+  Column   |  Type  | Collation | Nullable | Default 
+-----------+--------+-----------+----------+---------
+ id        | bigint |           | not null | 
+ ptnum     | text   |           | not null | 
+ clin_note | text   |           |          | 
+Indexes:
+    "tbl_clin_note_pkey" PRIMARY KEY, btree (id)
+    "tbl_clin_note_ptnum_key" UNIQUE CONSTRAINT, btree (ptnum)
+
