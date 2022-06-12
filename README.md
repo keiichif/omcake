@@ -30,5 +30,6 @@ ORCAとの連携はORCA→omcakeの一方向。
 半角から全角へ変換するpostgres用関数(https://postgresweb.com/post-2295)
 を使わせてもらっています。
 
-電子カルテでは変更履歴をすべて残しておく必要があります。omcakeではOpenDolphinと同じく、差分を記録しないで保存時刻の異なるデータが貯まるようにしています。そして、保存時刻が最新のレコードを普段は表示させるために「同一グループの中で最大のレコードを取得する SQL を書く」(https://www.timedia.co.jp/tech/selecting-max-record-in-group-by/)が必須でした。これを知ったのでomcakeはできたようなものです。
+電子カルテでは変更履歴をすべて残しておく必要があります。omcakeではOpenDolphinと同じく、差分を記録しないで保存時刻の異なるデータが貯まるようにしています。そして、保存時刻が最新のレコードを普段は表示させるために「同一グループの中で最大のレコードを取得する SQL を書く」(https://www.timedia.co.jp/tech/selecting-max-record-in-group-by/)
+が必須でした。これを知ったのでomcakeはできたようなものです。
 
