@@ -1,3 +1,17 @@
+# omcake v0.2用の修正手順
+
+mrディレクトリでauthenticationプラグインをインストールしてください。
+> composer require "cakephp/authentication:^2.0"
+
+mrデータベースの構造を変更してください。（psqlを使って変更してください。）
+> ALTER TABLE tbl_cc_and_order ADD userid varchar(16);
+> CREATE TABLE users (id serial PRIMARY KEY, userid varchar(16) NOT NULL, password varchar(256) NOT NULL, is_entering_newpw boolean);
+
+configディレクトリのファイルの修正をしてください。(configディレクトリに修正のサンプルをおいています。)
+srcディレクトリのApplication.phpを修正してください。
+
+# omcake v0.1インストール手順書
+
 ﻿サーバとなるPCにORCAをインストール（手順書は下記サイト）。
 https://www.orca.med.or.jp/receipt/download/focal/focal_install_52.html
 

@@ -1,30 +1,48 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Http\Client;
-use Cake\I18n\Time;
-use Cake\Utility\Xml;
+use Cake\I18n\FrozenDate;
+use Cake\ORM\TableRegistry;
+use Cake\Utility\Text;
 
 
 class AcceptanceListController extends AppController
 {
 
-
+    
     public function initialize(): void
     {
-        parent::initialize();    
+        parent::initialize();
+        
         $this->loadComponent('MrCommon');
         $this->loadComponent('OrcaApi');
     
-        if (!$this->MrCommon->is_allowed_ip()) $this->redirect ('/forbidden');
-        
         $this->viewBuilder()->setLayout('mr-common');        
     }
 
     
-// action  --------------------------------------------------------------  
+    public function beforeFilter(\Cake\Event\EventInterface $event) 
+    {
+        parent::beforeFilter($event);
+            
+        $result = $this->Authentication->getResult();
+
+        if ($result->isValid()) {
+            $userid = $this->request->getAttribute('identity')->userid;
+            //var_dump($userid);
+            $users = TableRegistry::getTableLocator()->get('Users');
+            $query = $users->find()->select(['is_entering_newpw'])->where(['userid'=>$userid]);
+            if ($query->first()->is_entering_newpw) {
+                return $this->redirect('/users/login'); // パスワード変更中はログインに戻す。
+            }
+        }    
+    }
+
+
+// actions  --------------------------------------------------------------  
 
     
     public function index()
@@ -34,45 +52,42 @@ class AcceptanceListController extends AppController
     
     public function past()
     {       
-        $date = $this->request->getData('date');
-        // 全角英数字を半角に
-        $date = mb_convert_kana($date, 'a');
-        
-        if (strtotime($date)) {  // $dateのフォーマットチェック
-            $t_date = new Time($date);
-            $date = $t_date->toDateString();
-        } else {
-            $date = Time::yesterday()->toDateString();
+        $date = FrozenDate::yesterday()->toDateString();
+        if ($this->request->is('post')) {
+            $date = $this->request->getData('date', '');
         }
-                    
-        $this->OrcaApi->get_aclist($date, 'past', $aclist_header, $aclist_body);
 
+        $this->OrcaApi->get_aclist($date, $aclist_header, $aclist_body);
+
+        $this->set('date', $date);
         $this->set('aclist_header',$aclist_header);      
         $this->set('aclist_body', $aclist_body);
-        $this->set('date', $date);
-        $this->render('past');        
     }
 
     
-    public function printTicket() {                
+    public function printTicket()
+    {                
         $ac_no = $this->request->getQuery('ac_no');
-        $ptnumber = $this->request->getQuery('ptnumber');
+        $ptnumber = $this->request->getQuery('ptnumber');        
         $this->OrcaApi->get_pt_inf($ptnumber, $name, $kana_name, $birthdate, $age, $zipcode, $address, $phone_no);        
-        $now = Time::now()->toDateString();
-        $response = shell_exec("bash print_r-ticket_cakephp.sh " . $now . ' ' . 
-                $ac_no . ' ' . $name . ' ' . $ptnumber);
-        $this->redirect('/acceptance-list/today');
+        $date = FrozenDate::today()->toDateString();
+        
+        $cmd = Text::insert('bash print_r-ticket_cakephp.sh :date :ac_no :name :ptnumber', 
+                            ['date'=>$date, 'ac_no'=>$ac_no, 'name'=>$name,'ptnumber'=>$ptnumber]);
+        $response = shell_exec($cmd);
+        
+        return $this->redirect('/acceptance-list/today');
     }    
 
     
     public function today()
     {
-        $date = Time::now()->toDateString();
+        $date = FrozenDate::today()->toDateString();
 
-        $this->OrcaApi->get_aclist($date, 'today', $aclist_header, $aclist_body);
+        $this->OrcaApi->get_aclist($date, $aclist_header, $aclist_body);
         
         $this->set('aclist_header',$aclist_header);      
-        $this->set('aclist_body', $aclist_body);        
+        $this->set('aclist_body',  $aclist_body);        
     }
 
     

@@ -1,0 +1,3 @@
+<div id="header_link">
+    <?=$this->Html->link('見出し', ['action'=>'headlines', '?'=>['ptnumber'=>$ptnumber, 'ac_no'=>$ac_no]], ['target'=>'_blank']) ?>
+</div>

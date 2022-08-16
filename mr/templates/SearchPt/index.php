@@ -3,8 +3,7 @@
 
 <main>
     <div>
-        <?=$this->Form->create(null, ['type'=>'post', 
-                'url'=>['controller'=>'SearchPt', 'action'=>'index']]) ?>
+        <?=$this->Form->create() ?>
 
         <?=$this->Form->text('data_for_search', ['placeholder' => '患者番号、名前、ふりがな']) ?>
         <?=$this->Form->end() ?>

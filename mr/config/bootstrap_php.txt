@@ -1,0 +1,7 @@
+// mr/config/bootstrap.php の末尾に追加してください。
+
+
+if (file_exists(CONFIG . 'mr_config.php')) {
+    Configure::config('mr', new PhpConfig());
+    Configure::load('mr_config', 'mr');
+}

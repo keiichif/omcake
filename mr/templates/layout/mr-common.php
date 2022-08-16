@@ -13,7 +13,8 @@
     
 <body>
     <?=$this->fetch('content') ?>
-    <?=$this->fetch('script') ?>        
-    <?=$this->fetch('script2') ?>        
+    <?=$this->fetch('script')  ?>        
+    <?=$this->fetch('script2') ?>
+    <?=$this->fetch('script3') ?>
 </body>
 </html>

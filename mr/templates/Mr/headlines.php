@@ -1,9 +1,10 @@
 <?=$this->element('Mr/head', ['task' => '見出し一覧']) ?>
 <?php $this->assign('css', $this->Html->css('headlines')) ?>
+<?php $this->assign('script', $this->Html->script('reload_when_focused')) ?>
 
 <header>
-<?=$this->element('Mr/link_from_headlines') ?>
-<?=$this->element('Mr/header_of_mr0')  ?>
+<?=$this->element('Mr/links_on_headlines') ?>
+<?=$this->element('Mr/ptno_name_age') ?>
 </header>
 
 <main>

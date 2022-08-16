@@ -2,8 +2,9 @@
 <?php $this->assign('css', $this->Html->css('mr')) ?>
 
 <header>
-<?=$this->element('Mr/link_from_view_mr') // $mridをedit_mrに渡す ?>
-<?=$this->element('Mr/header_of_mr')  ?>
+<?=$this->element('Mr/links_on_view_mr') ?>
+<?=$this->element('Mr/ptno_name_age') ?>
+<?=$this->element('Mr/recorded_time') ?>
 </header>        
 <main>
 <?php $table_header = ['既往症・原因・主要症状・経過等', '処方・手術・処置等'] ?>

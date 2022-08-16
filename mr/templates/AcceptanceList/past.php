@@ -3,8 +3,7 @@
 
 <main>
     <div>
-        <?=$this->Form->create(null,['type'=>'post', 
-                                        'url'=>'acceptance-list/past']) ?>
+        <?=$this->Form->create(null,['type'=>'post']) ?>
         <?=$this->Form->date( '', ['name'=>'date','value'=>h($date)]) ?>
         <?=$this->Form->button('検索')  ?>
         <?=$this->Form->end() ?>
