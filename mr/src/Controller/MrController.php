@@ -200,7 +200,7 @@ class MrController extends AppController
         $this->set('time', $time);
         $this->set('cc', '');
         $this->set('col_order', '');
-        $this->set('clin_note', '');           
+        $this->set('clin_note', $this->get_clin_note($ptnumber));           
 
         $data = ['ptnumber'=>$ptnumber, 'ac_no'=>$ac_no, 'time'=>$time];
         if ($this->request->is('post')) {
