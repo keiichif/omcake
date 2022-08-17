@@ -218,6 +218,7 @@ class UsersController extends AppController
         $this->request->allowMethod(['get', 'post']); // マニュアルどおり。入れる理由は不明。
         $result = $this->Authentication->getResult();
         $redirect = $this->request->getQuery('redirect');
+        $ip = $_SERVER['REMOTE_ADDR'];
         
         if (!$this->MrCommon->is_allowed_ip()) {
             $error = 'アクセス許可がありません。';
@@ -236,10 +237,9 @@ class UsersController extends AppController
                 } elseif ($this->request->getData('btn_change_pw')) {
                     return $this->redirect(['action'=>'enter-newpassword', $id]);        
                 } else {
-                    $this->log($this->request->getAttribute('identity')->userid . ' logged in.', 'info');
-                    var_dump($redirect);
+                    $this->log($userid . ' logged in ' . 'from ' . $ip, 'info');
                     if (!$redirect || $redirect === '/users/login') {
-                        return $this->redirect ('/users/login-success');
+                        return $this->redirect (['action'=>'login-success']);
                     } else {
                         return $this->redirect($redirect);
                     }
@@ -257,7 +257,7 @@ class UsersController extends AppController
         $workerlist = $this->OrcaApi->get_worker_list();
         foreach ($workerlist as $obj) {
             if ($obj['user_id'] === $this->userid) {
-                $username = preg_replace('/　/', ' ', $obj['name']);
+                $username = $obj['name'];
                 break;
             }
         }
@@ -272,7 +272,7 @@ class UsersController extends AppController
         if ($result->isValid()) {
             $userid = $this->request->getAttribute('identity')->userid;
             $this->Authentication->logout();
-            $this->log($userid . ' logged out.', 'info');
+            $this->log($userid . ' logged out', 'info');
         }
     }
 

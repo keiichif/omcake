@@ -10,7 +10,7 @@ return [
         //'str_for_mr_conn' => 'host=localhost dbname=mr user=mr',
         //'dsn' => 'postgres://mr:@localhost/mr',
 
-        'pt_data_dir' => '/home/furu/pt_doc',
+        'pt_data_dir' => 'pt_doc',
         
         'allowed_ip' => [
             '127.0.0.1',

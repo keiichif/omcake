@@ -76,7 +76,7 @@ class MrCommonComponent extends Component
     }
     
 
-    public function open_patient_folder(string $ptnumber)
+    public function make_patient_folder(string $ptnumber)
     {
         $ptnum = str_pad($ptnumber, 5, '0', STR_PAD_LEFT);
         $highest_no = substr($ptnum, 0, 1);
@@ -84,8 +84,14 @@ class MrCommonComponent extends Component
         $conf = Configure::read('mr');
         $dir = $conf['pt_data_dir'] . '/' . $highest_no . '/' . $ptnum;
 
-        if (!file_exists($dir)) mkdir($dir, 0777, true);
-            
+        if (!file_exists($dir)) mkdir($dir, 0777, true);        
+    }
+
+
+
+    public function open_patient_folder(string $ptnumber)
+    {
+        $this->make_patient_folder($ptnumber);
         shell_exec('gio open ' . $dir);
     }
     

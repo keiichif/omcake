@@ -63,8 +63,8 @@ class OrcaApiComponent extends Component
             $ac_no = (int)$obj['Acceptance_Id']['@'];
 
             if ($fd_date->isToday()) {
-                $ac_no_link = Text::insert('<a href=:url?ptnumber=:ptnumber&ac_no=:ac_no target="_blank">:ac_no</a>',
-                                        ['url'=>'/acceptance-list/print_ticket', 'ptnumber'=>$ptnumber,'ac_no'=>$ac_no]);
+                $ac_no_link = Text::insert('<a href=:url?ptnumber=:ptnumber&ac_no=:ac_no>:ac_no</a>',
+                                        ['url'=>'/acceptance-list/print-ticket', 'ptnumber'=>$ptnumber,'ac_no'=>$ac_no]);
                 $ptnumber_link = Text::insert('<a href=:url?ptnumber=:ptnumber&ac_no=:ac_no target="_blank">:ptnumber</a>',
                                         ['url'=>'/mr/headlines', 'ptnumber'=>$ptnumber, 'ac_no'=>$ac_no]);
             } else {
