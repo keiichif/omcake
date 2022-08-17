@@ -159,7 +159,7 @@ class MrController extends AppController
                                     $zipcode, $address, $phone_no);        
         $cc_list = $this->get_cc_list($ptnumber);
         
-        $this->MrCommon->make_patient_folder($ptnumber);
+        // $this->MrCommon->make_patient_folder($ptnumber);
         // $this->MrCommon->open_patient_folder($ptnumber);
 
         if ($cc_list === []) {
